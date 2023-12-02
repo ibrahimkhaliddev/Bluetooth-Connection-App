@@ -51,7 +51,6 @@
             try {
                 // Request Bluetooth devices with a specific name
                 const devices = await navigator.bluetooth.requestDevice({
-                    acceptAllDevices: false,
                     optionalServices: ['00001101-0000-1000-8000-00805F9B34FB'],
                 });
 
