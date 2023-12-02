@@ -45,9 +45,8 @@
 
         async function listBluetoothDevices() {
             try {
-                // Request Bluetooth devices
-                const filters = { filters: [{ services: ['heart_rate'] }] }; // Adjust service UUID as needed
-                const devices = await navigator.bluetooth.requestDevice(filters);
+                // Request Bluetooth devices without any filters
+                const devices = await navigator.bluetooth.requestDevice();
 
                 // Display the list of devices on the website
                 const deviceList = document.getElementById('deviceList');
