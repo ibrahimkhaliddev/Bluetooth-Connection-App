@@ -27,6 +27,7 @@
 <body>
 
     <h1>Bluetooth Connect</h1>
+    <button onclick="listBluetoothDevices()">List Bluetooth Devices</button>
     <ul id="deviceList"></ul>
 
     <script>
@@ -63,9 +64,6 @@
                 console.error('Error listing Bluetooth devices:', error);
             }
         }
-
-        // Call the function to list Bluetooth devices when the page loads
-        window.addEventListener('DOMContentLoaded', listBluetoothDevices);
     </script>
 
 </body>
