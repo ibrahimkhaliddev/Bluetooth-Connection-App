@@ -54,6 +54,11 @@
                 const deviceList = document.getElementById('deviceList');
                 deviceList.innerHTML = ''; // Clear previous list
 
+                if (!devices.length) {
+                    alert('Please select a Bluetooth device to proceed.');
+                    return;
+                }
+
                 devices.forEach(device => {
                     const listItem = document.createElement('li');
                     listItem.innerText = device.name || 'Unknown Device';
