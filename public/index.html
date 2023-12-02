@@ -45,8 +45,10 @@
 
         async function listBluetoothDevices() {
             try {
-                // Request Bluetooth devices without any filters
-                const devices = await navigator.bluetooth.requestDevice();
+                // Request all Bluetooth devices
+                const devices = await navigator.bluetooth.requestDevice({
+                    acceptAllDevices: true
+                });
 
                 // Display the list of devices on the website
                 const deviceList = document.getElementById('deviceList');
