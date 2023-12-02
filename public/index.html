@@ -10,28 +10,62 @@
             text-align: center;
             padding: 50px;
         }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 10px;
+            cursor: pointer;
+            color: blue;
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
 
     <h1>Bluetooth Connect</h1>
-    <button onclick="connectBluetooth()">Connect to Bluetooth</button>
-    <p id="deviceName"></p>
+    <ul id="deviceList"></ul>
 
     <script>
-        async function connectBluetooth() {
+        async function connectBluetooth(device) {
             try {
-                // Request Bluetooth device
-                const device = await navigator.bluetooth.requestDevice({
-                    acceptAllDevices: true,
-                });
+                // Connect to the selected Bluetooth device
+                const gattServer = await device.gatt.connect();
 
-                // Display the device name on the website
-                document.getElementById('deviceName').innerText = `Connected to: ${device.name}`;
+                // Implement your Bluetooth communication logic here
+                console.log('Connected to Bluetooth device:', device.name);
             } catch (error) {
                 console.error('Error connecting to Bluetooth device:', error);
             }
         }
+
+        async function listBluetoothDevices() {
+            try {
+                // Request Bluetooth devices
+                const devices = await navigator.bluetooth.requestDevice({
+                    acceptAllDevices: true,
+                });
+
+                // Display the list of devices on the website
+                const deviceList = document.getElementById('deviceList');
+                deviceList.innerHTML = ''; // Clear previous list
+
+                devices.forEach(device => {
+                    const listItem = document.createElement('li');
+                    listItem.innerText = device.name || 'Unknown Device';
+                    listItem.onclick = () => connectBluetooth(device);
+                    deviceList.appendChild(listItem);
+                });
+            } catch (error) {
+                console.error('Error listing Bluetooth devices:', error);
+            }
+        }
+
+        // Call the function to list Bluetooth devices
+        listBluetoothDevices();
     </script>
 
 </body>
