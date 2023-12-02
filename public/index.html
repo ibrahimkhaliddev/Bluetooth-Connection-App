@@ -47,7 +47,7 @@
             try {
                 // Request Bluetooth devices
                 const devices = await navigator.bluetooth.requestDevice({
-                    acceptAllDevices: true,
+                    filters: [{ services: ['heart_rate'] }], // Adjust service UUID as needed
                 });
 
                 // Display the list of devices on the website
@@ -55,7 +55,7 @@
                 deviceList.innerHTML = ''; // Clear previous list
 
                 if (!devices.length) {
-                    alert('Please select a Bluetooth device to proceed.');
+                    alert('No Bluetooth devices found.');
                     return;
                 }
 
