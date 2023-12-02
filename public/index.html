@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bluetooth Connect</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Bluetooth Connect</h1>
+    <button onclick="connectBluetooth()">Connect to Bluetooth</button>
+    <p id="deviceName"></p>
+
+    <script>
+        async function connectBluetooth() {
+            try {
+                // Request Bluetooth device
+                const device = await navigator.bluetooth.requestDevice({
+                    acceptAllDevices: true,
+                });
+
+                // Display the device name on the website
+                document.getElementById('deviceName').innerText = `Connected to: ${device.name}`;
+            } catch (error) {
+                console.error('Error connecting to Bluetooth device:', error);
+            }
+        }
+    </script>
+
+</body>
+</html>
