@@ -64,8 +64,8 @@
             }
         }
 
-        // Call the function to list Bluetooth devices
-        listBluetoothDevices();
+        // Call the function to list Bluetooth devices when the page loads
+        window.addEventListener('DOMContentLoaded', listBluetoothDevices);
     </script>
 
 </body>
