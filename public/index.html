@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,6 +25,7 @@
         }
     </style>
 </head>
+
 <body>
 
     <h1>Bluetooth Connect</h1>
@@ -49,10 +51,8 @@
             try {
                 // Request Bluetooth devices with a specific name
                 const devices = await navigator.bluetooth.requestDevice({
-                    filters: [
-                        { name: 'JDY-31-SPP' } // Replace with your HC-05 module's name
-                    ],
-                    acceptAllDevices: false
+                    acceptAllDevices: false,
+                    optionalServices: ['00001101-0000-1000-8000-00805F9B34FB'],
                 });
 
                 // Display the list of devices on the website
@@ -79,4 +79,5 @@
     </script>
 
 </body>
+
 </html>
