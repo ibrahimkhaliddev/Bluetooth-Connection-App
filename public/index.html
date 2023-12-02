@@ -38,6 +38,8 @@
 
                 // Implement your Bluetooth communication logic here
                 console.log('Connected to Bluetooth device:', device.name);
+                // Add logic to send a signal to your Arduino/HC-05 module
+                // For example, you may send a specific command to turn on Bluetooth
             } catch (error) {
                 console.error('Error connecting to Bluetooth device:', error);
             }
@@ -45,9 +47,12 @@
 
         async function listBluetoothDevices() {
             try {
-                // Request all Bluetooth devices
+                // Request Bluetooth devices with a specific name
                 const devices = await navigator.bluetooth.requestDevice({
-                    acceptAllDevices: true
+                    filters: [
+                        { name: 'YourHC05Name' } // Replace with your HC-05 module's name
+                    ],
+                    acceptAllDevices: false
                 });
 
                 // Display the list of devices on the website
