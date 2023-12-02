@@ -46,9 +46,8 @@
         async function listBluetoothDevices() {
             try {
                 // Request Bluetooth devices
-                const devices = await navigator.bluetooth.requestDevice({
-                    filters: [{ services: ['heart_rate'] }], // Adjust service UUID as needed
-                });
+                const filters = { filters: [{ services: ['heart_rate'] }] }; // Adjust service UUID as needed
+                const devices = await navigator.bluetooth.requestDevice(filters);
 
                 // Display the list of devices on the website
                 const deviceList = document.getElementById('deviceList');
@@ -56,6 +55,7 @@
 
                 if (!devices.length) {
                     alert('No Bluetooth devices found.');
+                    console.log('No Bluetooth devices found.');
                     return;
                 }
 
@@ -67,6 +67,7 @@
                 });
             } catch (error) {
                 console.error('Error listing Bluetooth devices:', error);
+                alert('Error listing Bluetooth devices. Check console for details.');
             }
         }
     </script>
